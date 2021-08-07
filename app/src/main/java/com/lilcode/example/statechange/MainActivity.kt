@@ -53,10 +53,16 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         Log.i(TAG, "onSaveInstanceState()")
+
+        val userText = binding.editText.text
+        outState?.putCharSequence("savedText", userText)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         Log.i(TAG, "onRestoreInstanceState()")
+
+        val userText = savedInstanceState.getCharSequence("savedText")
+        binding.editText.setText(userText)
     }
 }
